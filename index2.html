@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 1. Thay đổi tiêu đề -->
+	<title>Tâm thư gửi em !</title>
+	<link rel="shortcut icon" href="./img/heart.png" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script:700" rel="stylesheet">
+	<link rel="stylesheet" href="2.css">
+	<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+<body>
+	<div class="container mt-4 layer">
+		<div class="row">
+			<div class="col-12">
+				<div class="thu">
+					<div class="thuTitle text-center">
+						<!-- 2. Đây nữa -->
+						<div class="something">Anh có điều muốn nói với em!</div>
+					</div>
+					<div class="content">
+						<div class="tamthu p-5">
+							<!-- 3. Đây nữa -->
+							❤️❤️❤️❤️❤️Đời anh chủ yếu là nỗi buồn ! Nổi buồn nhiều hơn niềm vui. Vây quanh anh là sự cô độc. Hạnh phúc đối với anh là điều xa xỉ nên anh chẳng dám mong cầu hay hi vọng mình sẽ có được một tình yêu đẹp. Nhưng ... "từ khi gặp em anh thấy cuộc sống vui nhiều, cứ cười tủm tìm từ sáng cho đến chiều".<br>Em đến như một món quà bất ngờ không có sự chuẩn bị trước. Anh cũng không ngờ được tình cảm của anh xuất phát đột ngột như vậy. Nếu giờ em hỏi anh, vì sao anh thích em ? Anh không biết phải trả lời như thế nào ... vì trong khoảnh khắc nào đó, anh nhận ra mình đang nhớ em. Có lẽ anh nhận ra mình thích em từ lúc đấy và lý do thì chắc đơn giản là ... anh thích em. Anh biết rằng như thế này rất đường đột đối với em, nhưng anh nghĩ rằng sẽ không đường đột nếu như chúng ta cùng chung 1 nhịp đập và để anh không phải hối hận cho dù kết quả có như thế nào đi chằng nữa. Em có thể nhắn tin cho anh bất cứ khi nào em muốn hoặc em có quyền im lặng để trái tim mình thực sự cần sự trưởng thành hơn và anh luôn tôn trọng những điều đó!!!waitting you!!!. ❤️❤️❤️❤️❤️❤️
+						</div>
+						<div class="btn-group" id="auth-buttons" style="display: none; justify-content: center; margin-bottom: 20px;">
+							<button class="btn-yes" id="yesBtn">Đồng ý nè <i class="fas fa-heart"></i></button>
+							<button class="btn-no" id="noBtn">Không nha <i class="fas fa-times"></i></button>
+						</div>
+						<div class="col-12 text-center">
+							<div class="btn btn-primary mb-5"><a href="https://www.facebook.com/DangDinhQuyen04" style="color: #f4f4f4;">Nhắn facebook cho anh nhé !!! <i class="fab fa-facebook-messenger ml-2"></i></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="javascript/charming.js"></script>
+	<script src="javascript/anime.js"></script>
+	<script src="javascript/scrollMonitor.js"></script>
+	<script src="javascript/myscript2.js"></script>
+	<div id="heart-container"></div>
+
+	<!-- Nhạc nền dùng chung giữa 2 trang -->
+	<audio id="player" loop>
+		<source src="./music/music.mp3" type="audio/mpeg">
+	</audio>
+
+	<script>
+		window.addEventListener('load', function() {
+			var audio = document.getElementById('player');
+			if (!audio) return;
+
+			var savedTime = parseFloat(sessionStorage.getItem('loveMusicTime') || '0');
+			var shouldPlay = sessionStorage.getItem('loveMusicShouldPlay');
+
+			if (!isNaN(savedTime) && savedTime > 0) {
+				audio.currentTime = savedTime;
+			}
+
+			if (shouldPlay === '1' || shouldPlay === null) {
+				audio.play().catch(function() {
+					console.log("Autoplay bị trình duyệt chặn ở trang 2. Nhạc sẽ phát khi bạn tương tác.");
+				});
+			}
+		});
+	</script>
+</body>
+</html>
