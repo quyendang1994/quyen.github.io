@@ -223,16 +223,21 @@ window.addEventListener('load', function() {
 document.getElementById('open-letter-link').addEventListener('click', function(event) {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của link
 
+    const audio = document.getElementById('player');
+    if (audio) {
+        // Trên mobile, phát nhạc ngay trong sự kiện click/touch để vượt chặn autoplay
+        audio.play().then(function() {
+            sessionStorage.setItem('loveMusicShouldPlay', '1');
+        }).catch(function() {
+            // Nếu bị chặn vẫn lưu trạng thái hiện tại để trang sau tự xử lý
+            sessionStorage.setItem('loveMusicShouldPlay', audio.paused ? '0' : '1');
+        });
+        sessionStorage.setItem('loveMusicTime', audio.currentTime || 0);
+    }
+
     const transitionOverlay = document.getElementById('transition-overlay');
     if (transitionOverlay) {
         transitionOverlay.classList.add('active'); // Thêm class 'active' để kích hoạt hiệu ứng
-
-        // Lưu vị trí nhạc hiện tại trước khi chuyển trang để trang sau phát tiếp
-        const audio = document.getElementById('player');
-        if (audio) {
-            sessionStorage.setItem('loveMusicTime', audio.currentTime || 0);
-            sessionStorage.setItem('loveMusicShouldPlay', audio.paused ? '0' : '1');
-        }
 
         // Chuyển hướng đến trang index2.html sau khi hiệu ứng hoàn tất, giữ nguyên tham số URL
         setTimeout(function() {
@@ -241,6 +246,7 @@ document.getElementById('open-letter-link').addEventListener('click', function(e
         }, 500); // Thời gian chờ khớp với transition duration trong CSS (0.5s)
     } else {
         // Fallback nếu không tìm thấy overlay
-        window.location.href = 'index2.html';
+        const currentParams = window.location.search;
+        window.location.href = 'index2.html' + currentParams;
     }
 });

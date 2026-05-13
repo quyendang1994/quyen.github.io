@@ -71,6 +71,23 @@ mask.style.transform = "scaleX(0)";
 thu.style.opacity= "0";
 
 window.onload = function() {
+	// Tiếp tục phát nhạc khi chuyển từ trang trước (đặc biệt cho mobile)
+	var audio = document.getElementById('player');
+	if (audio) {
+		var savedTime = parseFloat(sessionStorage.getItem('loveMusicTime') || '0');
+		var shouldPlay = sessionStorage.getItem('loveMusicShouldPlay');
+
+		if (!isNaN(savedTime) && savedTime > 0) {
+			audio.currentTime = savedTime;
+		}
+
+		if (shouldPlay === '1') {
+			audio.play().catch(function(error) {
+				console.log("Không thể tự phát nhạc trên trang 2:", error);
+			});
+		}
+	}
+
 	var okdone = anime({
 		delay: 300,
 		targets: mask,
