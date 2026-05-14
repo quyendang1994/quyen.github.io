@@ -45,11 +45,11 @@ theTime.add({
 	delay: 100,
 	strokeDashoffset: [anime.setDashoffset, 0],
 	easing: 'easeInOutSine',
-	duration: 2000,
+	duration: 10000,
 	update: function(percent) {
 		var thePercent = Math.round(percent.progress);
 		// Nội dung của nút bên dưới
-		document.querySelector('.container .sup').innerHTML= "Tim anh đang đập nhanh " + (thePercent+899);
+		document.querySelector('.container .sup').innerHTML= "Tim anh đang đập nhanh " + thePercent;
 	}
 });
 theTime.add({
